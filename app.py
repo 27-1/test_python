@@ -1,8 +1,8 @@
-import os
-import pymysql
 from flask import Flask, render_template, Response, request
 import requests
 import json
+import os
+from sqlalchemy import create_engine
 
 app = Flask(__name__)
 
@@ -12,42 +12,170 @@ def index():
     return render_template("index.html")
 
 
+@app.route('/sample')
+def sample():
+    return render_template("apiInstance.html")
+
+
 @app.route('/api', methods=['POST'])
 def api():
     url = request.form["url"]
     payload = request.form["payload"]
     headers = request.form["headers"]
     method = request.form["method"]
-    if method.upper == "GET":
+    headers = headers if headers else {}
+    payload = payload if payload else {}
+    payload = eval(payload)
+    headers = eval(headers)
+    if method.upper() == "GET":
         r = requests.get(url, params=payload, headers=headers)
-        return Response(json.dumps(r), mimetype='application/json')
-    elif method.upper == "POST":
+        return Response(r)
+    elif method.upper() == "POST":
         r = requests.post(url, data=json.dumps(payload), headers=headers)
-        return Response(json.dumps(r), mimetype='application/json')
-    elif method.upper == "PUT":
+        return Response(r)
+    elif method.upper() == "PUT":
         r = requests.put(url, data=json.dumps(payload), headers=headers)
-        return Response(json.dumps(r), mimetype='application/json')
-    elif method.upper == "DELETE":
+        return Response(r)
+    elif method.upper() == "DELETE":
         r = requests.delete(url, data=json.dumps(payload), headers=headers)
-        return Response(json.dumps(r), mimetype='application/json')
+        return Response(r)
+
+
+@app.route('/api2', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def api2():
+    method = request.method
+    MYSQL_HOST = os.environ("MYSQL_HOST", None)
+    MYSQL_USER = os.environ("MYSQL_USER", None)
+    MYSQL_PORT = os.environ("MYSQL_PORT", None)
+    MYSQL_PASS = os.environ("MYSQL_PASS", None)
+    DB_NAME = os.environ("DB_NAME", None)
+    if not MYSQL_HOST or not MYSQL_USER or not MYSQL_PASS or not DB_NAME:
+        return Response("参数不全")
+    if method == 'GET':
+        db = create_engine(
+            "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
+
+        resultProxy = db.execute("show tables;")
+        u = resultProxy.fetchall()
+        resultProxy.close()
+        table_name_list = []
+        if len(u) > 0:
+            for i in u:
+                table_name_list.append(i[0])
+        if 'user_info' not in table_name_list:
+            sql = "CREATE TABLE `user_info` (   `ID` int(11) NOT NULL AUTO_INCREMENT,   `user_name` varchar(128),   `password` varchar(128),   PRIMARY KEY (`ID`) ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;"
+            resultProxy = db.execute(sql)
+            resultProxy.close()
+
+        sql = "select * from user_info;"
+        resultProxy = db.execute(sql)
+        u = resultProxy.fetchall()
+        resultProxy.close()
+        print(u)
+        user_list = []
+        if len(u) > 0:
+            for i in u:
+                user_list.append(i[1])
+        return json.dumps(user_list, ensure_ascii=False)
+    elif method == 'POST':
+        data = request.data
+        j_data = json.loads(data)
+        user_name = j_data["user_name"]
+        password = j_data["password"]
+        db = create_engine(
+            "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
+
+        resultProxy = db.execute("show tables;")
+        u = resultProxy.fetchall()
+        resultProxy.close()
+        table_name_list = []
+        if len(u) > 0:
+            for i in u:
+                table_name_list.append(i[0])
+        if 'user_info' not in table_name_list:
+            sql = "CREATE TABLE `user_info` (   `ID` int(11) NOT NULL AUTO_INCREMENT,   `user_name` varchar(128),   `password` varchar(128),   PRIMARY KEY (`ID`) ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;"
+            resultProxy = db.execute(sql)
+            resultProxy.close()
+        sql = "INSERT INTO `user_info` (`user_name`, `password`) VALUES('{0}', '{1}');".format(user_name, password)
+        resultProxy = db.execute(sql)
+        resultProxy.close()
+        return json.dumps("添加成功", ensure_ascii=False)
+    elif method == 'PUT':
+        data = request.data
+        j_data = json.loads(data)
+        user_name = j_data["user_name"]
+        password = j_data["password"]
+        db = create_engine(
+            "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
+
+        resultProxy = db.execute("show tables;")
+        u = resultProxy.fetchall()
+        resultProxy.close()
+        table_name_list = []
+        if len(u) > 0:
+            for i in u:
+                table_name_list.append(i[0])
+        if 'user_info' not in table_name_list:
+            sql = "CREATE TABLE `user_info` (   `ID` int(11) NOT NULL AUTO_INCREMENT,   `user_name` varchar(128),   `password` varchar(128),   PRIMARY KEY (`ID`) ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;"
+            resultProxy = db.execute(sql)
+            resultProxy.close()
+        sql = "select * from user_info where user_name='{0}'".format(user_name)
+        resultProxy = db.execute(sql)
+        u = resultProxy.fetchall()
+        resultProxy.close()
+        if not len(u):
+            return Response("用户不存在")
+        sql = "update `user_info` set password='{0}' where user_name='{1}';".format(password, user_name)
+        resultProxy = db.execute(sql)
+        resultProxy.close()
+        return json.dumps("修改成功", ensure_ascii=False)
+    else:
+        data = request.data
+        j_data = json.loads(data)
+        user_name = j_data["user_name"]
+        db = create_engine(
+            "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
+        resultProxy = db.execute("show tables;")
+        u = resultProxy.fetchall()
+        resultProxy.close()
+        table_name_list = []
+        if len(u) > 0:
+            for i in u:
+                table_name_list.append(i[0])
+        if 'user_info' not in table_name_list:
+            sql = "CREATE TABLE `user_info` (   `ID` int(11) NOT NULL AUTO_INCREMENT,   `user_name` varchar(128),   `password` varchar(128),   PRIMARY KEY (`ID`) ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;"
+            resultProxy = db.execute(sql)
+            resultProxy.close()
+        sql = "select * from user_info where user_name='{0}'".format(user_name)
+        resultProxy = db.execute(sql)
+        u = resultProxy.fetchall()
+        resultProxy.close()
+        if not len(u):
+            return Response("用户不存在")
+        sql = "delete from user_info where user_name='{0}'".format(user_name)
+        resultProxy = db.execute(sql)
+        resultProxy.close()
+        return json.dumps("删除成功", ensure_ascii=False)
 
 
 @app.route('/mysql')
 def mysql():
     MYSQL_HOST = os.environ("MYSQL_HOST", None)
+    MYSQL_PORT = os.environ("MYSQL_PORT", None)
     MYSQL_USER = os.environ("MYSQL_USER", None)
     MYSQL_PASS = os.environ("MYSQL_PASS", None)
     DB_NAME = os.environ("DB_NAME", None)
     if not MYSQL_HOST or not MYSQL_USER or not MYSQL_PASS or not DB_NAME:
         return Response("参数不全")
-
-    conn = pymysql.connect(host=MYSQL_HOST, user=MYSQL_USER, password=MYSQL_PASS, db=DB_NAME, charset='utf8')
-    cur = conn.cursor()
-    sql = "show tables;"
-    cur.execute(sql)
-    u = cur.fetchall()
-    conn.close()
-    return Response(u)
+    db = create_engine("mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
+    resultProxy = db.execute("show tables;")
+    u = resultProxy.fetchall()
+    resultProxy.close()
+    table_name_list = []
+    if len(u) > 0:
+        for i in u:
+            table_name_list.append(i[0])
+    return json.dumps(table_name_list, ensure_ascii=False)
 
 
 if __name__ == '__main__':
