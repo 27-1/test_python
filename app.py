@@ -1,6 +1,8 @@
 import os
 import pymysql
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response, request
+import requests
+import json
 
 app = Flask(__name__)
 
@@ -10,9 +12,24 @@ def index():
     return render_template("index.html")
 
 
-@app.route('/api')
+@app.route('/api', methods=['POST'])
 def api():
-    return render_template("apiInstance.html")
+    url = request.form["url"]
+    payload = request.form["payload"]
+    headers = request.form["headers"]
+    method = request.form["method"]
+    if method.upper == "GET":
+        r = requests.get(url, params=payload, headers=headers)
+        return Response(json.dumps(r), mimetype='application/json')
+    elif method.upper == "POST":
+        r = requests.post(url, data=json.dumps(payload), headers=headers)
+        return Response(json.dumps(r), mimetype='application/json')
+    elif method.upper == "PUT":
+        r = requests.put(url, data=json.dumps(payload), headers=headers)
+        return Response(json.dumps(r), mimetype='application/json')
+    elif method.upper == "DELETE":
+        r = requests.delete(url, data=json.dumps(payload), headers=headers)
+        return Response(json.dumps(r), mimetype='application/json')
 
 
 @app.route('/mysql')
