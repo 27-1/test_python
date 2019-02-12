@@ -32,8 +32,15 @@
       <file leaf-file-name="mysql.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/mysql.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+            <state relative-caret-position="248">
+              <caret line="672" column="14" selection-start-line="672" selection-start-column="14" selection-end-line="672" selection-end-column="14" />
+              <folding>
+                <element signature="e#11564#11881#2#HTML" expanded="true" />
+                <element signature="e#12321#12698#2#HTML" expanded="true" />
+                <element signature="e#19995#22521#1#HTML" expanded="true" />
+                <element signature="n#style#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#54380#54386#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -206,7 +213,7 @@
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
       <window_info anchor="bottom" id="Terminal" weight="0.32917705" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24964234" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="right" id="Database" />
       <window_info anchor="right" id="SciView" />
@@ -306,8 +313,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/mysql.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+        <state relative-caret-position="248">
+          <caret line="672" column="14" selection-start-line="672" selection-start-column="14" selection-end-line="672" selection-end-column="14" />
+          <folding>
+            <element signature="e#11564#11881#2#HTML" expanded="true" />
+            <element signature="e#12321#12698#2#HTML" expanded="true" />
+            <element signature="e#19995#22521#1#HTML" expanded="true" />
+            <element signature="n#style#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#54380#54386#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
