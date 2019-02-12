@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="335e1a19-a1ee-4157-9e14-2e143903e874" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/mysql.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mysql.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/test_python$test_python.coverage" NAME="test_python Coverage Results" MODIFIED="1549937065754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/test_python$test_python.coverage" NAME="test_python Coverage Results" MODIFIED="1549957589306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/test_python$9999999.coverage" NAME="9999999 Coverage Results" MODIFIED="1549869506407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
@@ -33,15 +32,21 @@
       <file leaf-file-name="mysql.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/mysql.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="593">
-              <caret line="671" column="12" lean-forward="true" selection-start-line="671" selection-start-column="12" selection-end-line="671" selection-end-column="12" />
+            <state relative-caret-position="262">
+              <caret line="27" column="6" lean-forward="true" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
               <folding>
-                <element signature="e#11564#11881#2#HTML" expanded="true" />
-                <element signature="e#12321#12698#2#HTML" expanded="true" />
-                <element signature="e#19995#22521#1#HTML" expanded="true" />
-                <element signature="n#style#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#54380#54386#0#HTML" expanded="true" />
+                <element signature="n#style#0;n#footer#0;n#body#0;n#html#1;n#!!top" expanded="true" />
+                <element signature="e#54698#54704#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="484">
+              <caret line="28" column="95" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="28" selection-end-column="95" />
             </state>
           </provider>
         </entry>
@@ -75,6 +80,7 @@
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/templates/apiInstance.html" />
         <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/templates/iii.html" />
         <option value="$PROJECT_DIR$/templates/mysql.html" />
       </list>
     </option>
@@ -104,6 +110,11 @@
             <path>
               <item name="test_python" type="b2602c69:ProjectViewProjectNode" />
               <item name="test_python" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="test_python" type="b2602c69:ProjectViewProjectNode" />
+              <item name="test_python" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -246,13 +257,6 @@
     <entry file="file://$PROJECT_DIR$/runtime.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/9999999.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -281,12 +285,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="24" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="24" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/templates/iii.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -298,16 +298,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="28" column="95" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="28" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/mysql.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="671" column="12" lean-forward="true" selection-start-line="671" selection-start-column="12" selection-end-line="671" selection-end-column="12" />
+        <state relative-caret-position="262">
+          <caret line="27" column="6" lean-forward="true" selection-start-line="27" selection-start-column="6" selection-end-line="27" selection-end-column="6" />
           <folding>
-            <element signature="e#11564#11881#2#HTML" expanded="true" />
-            <element signature="e#12321#12698#2#HTML" expanded="true" />
-            <element signature="e#19995#22521#1#HTML" expanded="true" />
-            <element signature="n#style#0;n#footer#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#54380#54386#0#HTML" expanded="true" />
+            <element signature="n#style#0;n#footer#0;n#body#0;n#html#1;n#!!top" expanded="true" />
+            <element signature="e#54698#54704#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

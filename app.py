@@ -164,7 +164,7 @@ def mysql():
     MYSQL_PASS = os.environ.get("MYSQL_PASS", None)
     DB_NAME = os.environ.get("DB_NAME", None)
     if not MYSQL_HOST or not MYSQL_USER or not MYSQL_PASS or not DB_NAME:
-        return json.dumps("参数不全", ensure_ascii=False)
+        return render_template("mysql.html", msg='参数不全')
     db = create_engine("mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
     resultProxy = db.execute("show tables;")
     u = resultProxy.fetchall()
@@ -173,7 +173,7 @@ def mysql():
     if len(u) > 0:
         for i in u:
             table_name_list.append(i[0])
-    return render_template("mysql.html", table_name_list=table_name_list)
+    return render_template("mysql.html", table_name_list=table_name_list, msg='数据库连接成功')
 
 
 if __name__ == '__main__':
