@@ -163,14 +163,14 @@
             //   Authorization: `GRJWT ${getCookie("token")}`
             // },
             url: href[0]+'/api',
-            data: {
+            data: JSON.stringify({
               payload:{
-                user_name:username,
-                password: password
+                'user_name':username,
+                'password': password
               },
               method: method,
               url: apiUrl
-            },
+            }),
             cache: false,
             success: data => {
               $("#json").JSONView(data);

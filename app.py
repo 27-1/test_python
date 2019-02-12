@@ -27,6 +27,13 @@ def api():
     method = data.get("method")
     headers = headers if headers else {}
     payload = payload if payload else {}
+    # url = request.form.get('url', None)
+    # payload = request.form.get('payload', None)
+    # headers = request.form.get('headers', None)
+    # method = request.form.get('method', None)
+    # print('------->{0}'.format(payload))
+    # print('------->{0}'.format(type(payload)))
+    # print('---------->{0}'.format(method))
     if method.upper() == "GET":
         r = requests.get(url, params=payload, headers=headers)
         return Response(r)
@@ -84,6 +91,7 @@ def api2():
         password = j_data["password"]
         db = create_engine(
             "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
+        # db = create_engine("mysql://admin:5cd04add@47.92.168.60:20003/console")
         resultProxy = db.execute("show tables;")
         u = resultProxy.fetchall()
         resultProxy.close()
