@@ -54,7 +54,6 @@ def api2():
     if method == 'GET':
         db = create_engine(
             "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
-        # db = create_engine("mysql://admin:5cd04add@47.92.168.60:20003/console")
 
         resultProxy = db.execute("show tables;")
         u = resultProxy.fetchall()
@@ -85,7 +84,6 @@ def api2():
         password = j_data["password"]
         db = create_engine(
             "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
-        # db = create_engine("mysql://admin:5cd04add@47.92.168.60:20003/console")
         resultProxy = db.execute("show tables;")
         u = resultProxy.fetchall()
         resultProxy.close()
@@ -108,7 +106,6 @@ def api2():
         password = j_data["password"]
         db = create_engine(
             "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
-        # db = create_engine("mysql://admin:5cd04add@47.92.168.60:20003/console")
         resultProxy = db.execute("show tables;")
         u = resultProxy.fetchall()
         resultProxy.close()
@@ -136,7 +133,6 @@ def api2():
         user_name = j_data["user_name"]
         db = create_engine(
             "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
-        # db = create_engine("mysql://admin:5cd04add@47.92.168.60:20003/console")
         resultProxy = db.execute("show tables;")
         u = resultProxy.fetchall()
         resultProxy.close()
@@ -168,10 +164,8 @@ def mysql():
     MYSQL_PASS = os.environ.get("MYSQL_PASS", None)
     DB_NAME = os.environ.get("DB_NAME", None)
     if not MYSQL_HOST or not MYSQL_USER or not MYSQL_PASS or not DB_NAME:
-        print('111111111111')
         return json.dumps("参数不全", ensure_ascii=False)
     db = create_engine("mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
-    # db = create_engine("mysql://admin:5cd04add@47.92.168.60:20003/console")
     resultProxy = db.execute("show tables;")
     u = resultProxy.fetchall()
     resultProxy.close()
@@ -179,7 +173,6 @@ def mysql():
     if len(u) > 0:
         for i in u:
             table_name_list.append(i[0])
-    # return json.dumps(table_name_list, ensure_ascii=False)
     return render_template("mysql.html", table_name_list=table_name_list)
 
 
