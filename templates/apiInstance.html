@@ -6,19 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Rainbond Static Demo</title>
 
-    <link href="{{ request.script_root }}/static/css/font.css" rel="stylesheet" type="text/css" />
-    <link href="{{ request.script_root }}/static/css/kube.min.css" rel="stylesheet" type="text/css" />
-    <link
-      href="{{ request.script_root }}/static/css/kube.legenda.css"
-      rel="stylesheet"
-      type="text/css"
+    <meta
+      name="description"
+      content="Rainbond（云帮）是一款以应用为中心的开源PaaS，深度整合基于Kubernetes的容器管理、Service Mesh微服务架构最佳实践、多类型CI/CD应用构建与交付、多数据中心资源管理等技术，为用户提供云原生应用全生命周期解决方案，构建应用与基础设施、应用与应用、基础设施与基础设施之间互联互通的生态体系，满足支撑业务高速发展所需的敏捷开发、高效运维和精益管理需求。"
     />
-    <link href="{{ request.script_root }}/static/css/highlight.css" rel="stylesheet" type="text/css" />
-    <link href="{{ request.script_root }}/static/css/master.css" rel="stylesheet" type="text/css" />
-    <link href="{{ request.script_root }}/static/css/kube.demo.css" rel="stylesheet" type="text/css" />
 
-    <link href="{{ request.script_root }}/static/css/custom.css" rel="stylesheet" type="text/css" />
+    <meta name="author" content="goodrain" />
+
+    <meta property="og:title" content="Rainbond Static Demo" />
+    <meta
+      property="og:description"
+      content="Rainbond（云帮）是一款以应用为中心的开源PaaS，深度整合基于Kubernetes的容器管理、Service Mesh微服务架构最佳实践、多类型CI/CD应用构建与交付、多数据中心资源管理等技术，为用户提供云原生应用全生命周期解决方案，构建应用与基础设施、应用与应用、基础设施与基础设施之间互联互通的生态体系，满足支撑业务高速发展所需的敏捷开发、高效运维和精益管理需求。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/" />
+    <meta property="og:updated_time" content="2017-03-02T21:56:55&#43;01:00" />
+
     <link
+      href="https://cdn.bootcss.com/jquery-jsonview/1.2.3/jquery.jsonview.css"
+      rel="stylesheet"
+    />
+     <link href="{{ request.script_root }}/static/css/font.css" rel="stylesheet" type="text/css">
+  <link href="{{ request.script_root }}/static/css/kube.min.css" rel="stylesheet" type="text/css">
+  <link href="{{ request.script_root }}/static/css/kube.legenda.css" rel="stylesheet" type="text/css">
+  <link href="{{ request.script_root }}/static/css/highlight.css" rel="stylesheet" type="text/css">
+  <link href="{{ request.script_root }}/static/css/master.css" rel="stylesheet" type="text/css">
+  <link href="{{ request.script_root }}/static/css/kube.demo.css" rel="stylesheet" type="text/css">
+
+ <link href="{{ request.script_root }}/static/css/custom.css" rel="stylesheet" type="text/css">
+     <link
       href="https://cdn.bootcss.com/jquery-jsonview/1.2.3/jquery.jsonview.css"
       rel="stylesheet"
     />
@@ -26,20 +42,6 @@
 
   <body class="page-kube">
     <header>
-      <div class="show-sm">
-        <div id="nav-toggle-box">
-          <div id="nav-toggle-brand">
-            <a href="/" target="_blank">Rainbond</a>
-          </div>
-          <a
-            data-component="toggleme"
-            data-target="#top"
-            href="#"
-            id="nav-toggle"
-            ><i class="kube-menu"></i
-          ></a>
-        </div>
-      </div>
       <div class="hide-sm" id="top">
         <div id="top-brand">
           <a href="/" target="_blank" title="home">Rainbond</a>
@@ -54,7 +56,7 @@
 
             <li>
               <a
-                href="https://www.rainbond.com/docs/stable/user-manual/app-creation/language-support/python.html"
+                href="https://www.rainbond.com/docs/stable/user-manual/app-creation/language-support/html.html"
                 target="_blank"
                 >Docs</a
               >
@@ -89,20 +91,44 @@
     </header>
     <main>
       <div id="main">
-        <div class="row gutters">
-          <div class="col col-10">
-            <div class="form-item">
-              <input type="“text”" placeholder="请输入API地址" id="api_url"/>
+        <div class="row col-12">
+            <div class="form-item" style="width:60%;display: flex;margin-bottom: 1rem">
+                <label style="width:10%;line-height: 35px">URL <span >：</span></label>
+                <select style="width:13%;border-radius: 0" id="method">
+                  <option value="get">get</option>
+                  <option value="post">post</option>
+                  <option value="delete">delete</option>
+                  <option value="put">put</option>
+                </select>
+                <input type="text" style="border-radius: 0" id="api_url">
             </div>
-          </div>
-          <div class="col col-2">
-            <button class="button small" onclick="handleClick()">Submit</button>
-          </div>
+
+            <div class="form-item" style="width:60%;display: flex;margin-bottom: 1rem">
+                <label style="width:8%;line-height: 35px">参数 <span >：</span></label>
+                <input type="text" style="width:30%" value="username" disabled>
+                &nbsp;<span style="line-height:35px" >=</span>&nbsp;
+                  <input type="text"  style="width:30%" id="username">
+            </div>
+            <div class="form-item" style="width:60%;display: flex;margin-left: 5%;margin-bottom: 1rem">
+                <input type="text"  style="width:30%" value="password" disabled>
+                &nbsp;<span style="line-height:35px">=</span>&nbsp;
+                  <input type="text"  style="width:30%" id="password">
+            </div>
+            <!-- <div class="form-item" style="width:60%;display: flex;margin-left: 5%;margin-bottom: 1rem">
+                <input type="email"  style="width:30%" value="username" disabled>
+                &nbsp;<span style="line-height:35px">=</span>&nbsp;
+                  <input type="email"  style="width:30%"  id="c">
+            </div> -->
+        </div>
+        <div class="row col-12" style="margin-left: 5%;margin-bottom: 1rem">
+            <div class="col col-2">
+                <button class="button small" onclick="handleClick()">Submit</button>
+              </div>
         </div>
         <div
           class="row col-12"
           id="json"
-          style="border: 1px solid #eee;min-height: 250px"
+          style="border: 1px solid #3794de;min-height: 250px;border-radius: 2px"
         ></div>
       </div>
     </main>
@@ -114,26 +140,43 @@
       </nav>
       <p>&copy; Licence Apache.</p>
     </footer>
-    <script
-      src="{{ request.script_root }}/static/js/jquery-2.1.4.min.js"
-      type="text/javascript"
-    ></script>
-    <script type="text/javascript" src="{{ request.script_root }}/static/js/tocbot.min.js"></script>
-    <script src="{{ request.script_root }}/static/js/kube.js" type="text/javascript"></script>
-    <script src="{{ request.script_root }}/static/js/master.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/kube/6.5.2/js/kube.min.js"></script>
+    <script src="https://cdn.bootcss.com/tocbot/4.5.0/tocbot.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery-jsonview/1.2.3/jquery.jsonview.js"></script>
     <script>
       $(function() {
         handleClick = () => {
+          let apiUrl = $('#api_url').val();
+          var method = $('#method').val();
+          var username = $('#username').val();
+          var password = $('#password').val();
+          var flag = apiUrl && method && username && password;
+          var href = window.location.href.split('/sample');
+            if(!flag){
+                $("#json").JSONView('{"msg": "please enter a valid API", "msg_show": "请输入有效api或参数!"}')
+                return;
+            }
           $.ajax({
-            method: "get",
+            method: post,
             // headers: {
             //   Authorization: `GRJWT ${getCookie("token")}`
             // },
-            url: $('#api_url').val(),
+            url: href[0]+'/api',
+            data: {
+              payload:{
+                user_name:username,
+                password: password
+              },
+              method: method,
+              url: apiUrl
+            },
             cache: false,
             success: data => {
               $("#json").JSONView(data);
+            },
+            error:err=>{
+              $("#json").JSONView('{"msg": "the server responded with a status of 404 (Not Found)", "msg_show": "服务器的响应状态为404(未找到)"}');
             }
           });
         };

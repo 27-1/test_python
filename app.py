@@ -19,10 +19,17 @@ def sample():
 
 @app.route('/api', methods=['POST'])
 def api():
-    url = request.form["url"]
-    payload = request.form["payload"]
-    headers = request.form["headers"]
-    method = request.form["method"]
+    js_data = request.get_data()
+    data = json.loads(js_data)
+    url = data.get("url")
+    payload = data.get("payload")
+    headers = data.get("headers")
+    method = data.get("method")
+    print('-------------{0}'.format(url))
+    # url = request.form["url"]
+    # payload = request.form["payload"]
+    # headers = request.form["headers"]
+    # method = request.form["method"]
     headers = headers if headers else {}
     payload = payload if payload else {}
     payload = eval(payload)
@@ -122,7 +129,7 @@ def api2():
         u = resultProxy.fetchall()
         resultProxy.close()
         if not len(u):
-            return Response("用户不存在")
+            return json.dumps("用户不存在", ensure_ascii=False)
         sql = "update `user_info` set password='{0}' where user_name='{1}';".format(password, user_name)
         resultProxy = db.execute(sql)
         resultProxy.close()
@@ -149,7 +156,7 @@ def api2():
         u = resultProxy.fetchall()
         resultProxy.close()
         if not len(u):
-            return Response("用户不存在")
+            return json.dumps("用户不存在", ensure_ascii=False)
         sql = "delete from user_info where user_name='{0}'".format(user_name)
         resultProxy = db.execute(sql)
         resultProxy.close()
