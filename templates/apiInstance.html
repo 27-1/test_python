@@ -151,14 +151,14 @@
           var method = $('#method').val();
           var username = $('#username').val();
           var password = $('#password').val();
-          var flag = apiUrl && method && username && password;
+          var flag = apiUrl && method;
           var href = window.location.href.split('/sample');
             if(!flag){
                 $("#json").JSONView('{"msg": "please enter a valid API", "msg_show": "请输入有效api或参数!"}')
                 return;
             }
           $.ajax({
-            method: post,
+            method: 'post',
             // headers: {
             //   Authorization: `GRJWT ${getCookie("token")}`
             // },
