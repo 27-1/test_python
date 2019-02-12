@@ -666,13 +666,11 @@ body{font-family:Lato,Arial,sans-serif;}h1.title,h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.
     </header>
     <main>
       <div id="main">
-        <h1>{% for i in  table_name_list%}
-        <h2>
-            "表名称：" + {{i}}
-        </h2>
+        <div>{% for i in  table_name_list%}
+            {{i}}
         {% endfor %}
 
-        </h1>
+        </div>
       </div>
     </main>
     <footer id="footer" style="margin-top:35%">
