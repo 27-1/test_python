@@ -179,7 +179,8 @@ def mysql():
     if len(u) > 0:
         for i in u:
             table_name_list.append(i[0])
-    return json.dumps(table_name_list, ensure_ascii=False)
+    # return json.dumps(table_name_list, ensure_ascii=False)
+    return render_template("mysql.html", table_name_list=table_name_list)
 
 
 if __name__ == '__main__':
