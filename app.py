@@ -59,8 +59,7 @@ def api2():
     if not MYSQL_HOST or not MYSQL_USER or not MYSQL_PASS or not DB_NAME:
         return json.dumps("参数不全", ensure_ascii=False)
     if method == 'GET':
-        db = create_engine(
-            "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
+        db = create_engine("mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
         # db = create_engine("mysql://admin:5cd04add@47.92.168.60:20003/console")
         resultProxy = db.execute("show tables;")
         u = resultProxy.fetchall()
@@ -89,8 +88,7 @@ def api2():
         j_data = json.loads(data)
         user_name = j_data["user_name"]
         password = j_data["password"]
-        db = create_engine(
-            "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
+        db = create_engine("mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
         # db = create_engine("mysql://admin:5cd04add@47.92.168.60:20003/console")
         resultProxy = db.execute("show tables;")
         u = resultProxy.fetchall()
@@ -112,8 +110,7 @@ def api2():
         j_data = json.loads(data)
         user_name = j_data["user_name"]
         password = j_data["password"]
-        db = create_engine(
-            "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
+        db = create_engine("mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
         resultProxy = db.execute("show tables;")
         u = resultProxy.fetchall()
         resultProxy.close()
@@ -139,8 +136,7 @@ def api2():
         data = request.data
         j_data = json.loads(data)
         user_name = j_data["user_name"]
-        db = create_engine(
-            "mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
+        db = create_engine("mysql://{0}:{1}@{2}:{3}/{4}".format(MYSQL_USER, MYSQL_PASS, MYSQL_HOST, MYSQL_PORT, DB_NAME), echo=True)
         resultProxy = db.execute("show tables;")
         u = resultProxy.fetchall()
         resultProxy.close()
