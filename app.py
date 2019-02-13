@@ -2,6 +2,7 @@ from flask import Flask, render_template, Response, request
 import requests
 import json
 import os
+import flask
 from sqlalchemy import create_engine
 
 app = Flask(__name__)
@@ -36,7 +37,9 @@ def api():
     # print('---------->{0}'.format(method))
     if method.upper() == "GET":
         r = requests.get(url, params=payload, headers=headers)
-        return Response(r)
+        repo = flask.Response(r)
+        repo.headers["Connection"] = "keep-alive"
+        return repo
     elif method.upper() == "POST":
         r = requests.post(url, data=json.dumps(payload), headers=headers)
         return Response(r)
